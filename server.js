@@ -17,7 +17,7 @@ const formRoutes = require('./routes/form');
 const app = express();
 
 //sw
-app.get("/service-worker.js", (req, res) => {
+app.get('../frontend/.next/service-worker.js', (req, res) => {
     // Don't cache service worker is a best practice (otherwise clients wont get emergency bug fix)
     res.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
     res.set("Content-Type", "application/javascript");
