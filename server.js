@@ -45,3 +45,11 @@ const port = process.env.PORT || 8000;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+//sw
+server.get("/service-worker.js", (req, res) => {
+    // Don't cache service worker is a best practice (otherwise clients wont get emergency bug fix)
+    res.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+    res.set("Content-Type", "application/javascript");
+    app.serveStatic(req, res, path.resolve("./.next/service-worker.js"));
+});
